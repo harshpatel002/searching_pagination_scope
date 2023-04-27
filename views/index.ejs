@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>STUDENT DATA</h1>
+
+    <center>    
+        <form action="/form" style="margin-bottom: 25px;">
+            <input type="text" name="search" id="searchbar">
+            <input type="submit" value="GO">
+        </form>
+        <p>
+            First Name='^',  Last Name='%',  Student_email='$' 
+        </p>
+    </center>
+    
+    
+    <table border="2">
+        <tr class="header">
+            <td class="table_header"><a href="/page?id=id>">ID</a></td>
+            <td class="table_header"><a href="/page?id=std_fname>">First Name</a></td>
+            <td class="table_header"><a href="/page?id=std_lname>">Last Name</a></td>
+            <td class="table_header"><a href="/page?id=email>">Email</a></td>
+        </tr>
+        <tbody id="t_body">
+        <% for(i=0;i <data.length;i++){ %>
+            <tr>
+                <td>
+                    <%=data[i].id%>
+                </td>
+                <td>
+                    <%=data[i].firstName%>
+                </td>
+                <td>
+                    <%=data[i].lastName%>
+                </td>   
+                <td>
+                    <%=data[i].email%>
+                </td>   
+            </tr>
+                <% } %>
+            </tbody>
+
+    </table>
+    <center>
+        
+        <div id="pagination">
+            
+            <%for(var i=1;i <=allrecords;i++){%>
+                <%if(page==i){%>
+                  <span id="<%=i%>" onclick="pagination(this)">
+                    <%=i%>
+                  </span>
+                  <%}else{%>
+                    <span id="<%=i%>" onclick="pagination(this)">
+                      <%=i%>
+                    </span>
+                    <%}%>
+                      <%}%> <br>
+    
+        </div>
+        
+    </center>
+    
+    
+    
+                <script>
+    
+                  async function pagination(e) {
+                    console.log('harsh');
+                    let mn = e.id;
+                    let flag = "true"
+                    console.log(mn);
+                    const result = await fetch(`/page?page=${e.id}&ajax=${true}`);
+                    const res = await result.json();
+                    console.log('****************',res);
+                    t_body.innerHTML = ""
+    
+                    res.forEach(element => {
+                        console.log("U********",element);
+                      t_body.innerHTML += `
+    
+                            <tr>
+                                <td>
+                                    ${element.id}
+                                </td>
+                                <td>
+                                    ${element.firstName}
+                                </td>
+                                <td>
+                                    ${element.lastName}
+                                </td>
+                                
+                                <td>
+                                    ${element.email}
+                                </td>
+                                
+                            </tr>`
+                    });
+                  }
+                </script>
+    
+
+</body>
+
+</html>

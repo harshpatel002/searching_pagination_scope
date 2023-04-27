@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <h1>STUDENT DATA</h1>
+
+  <center>
+    <form action="/page" style="margin-bottom: 25px;">
+      <input type="text" name="searchbar" id="searchbar" value=<%=search%> disabled>
+      <input type="submit" value="Back">
+    </form>
+    <p>
+      First Name='^', Last Name='%', Student_email='$'
+    </p>
+  </center>
+
+
+  <table border="2">
+    <tr class="header">
+      <td class="table_header"><a href="/form?id=id>">ID</a></td>
+      <td class="table_header"><a href="/form?id=std_fname>">First Name</a></td>
+      <td class="table_header"><a href="/form?id=std_lname>">Last Name</a></td>
+      <td class="table_header"><a href="/form?id=email>">Email</a></td>
+    </tr>
+    <% for(i=0;i <data1.length;i++){ %>
+      <tr>
+        <td>
+          <%=data1[i].id%>
+        </td>
+        <td>
+          <%=data1[i].firstName%>
+        </td>
+        <td>
+          <%=data1[i].lastName%>
+        </td>
+        <td>
+          <%=data1[i].email%>
+        </td>
+      </tr>
+      <% } %>
+
+  </table>
+
+
+  
+</body>
+
+</html>
