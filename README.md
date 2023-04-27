@@ -1,0 +1,4 @@
+# searching_pagination_scope
+Searching and pagination using Scope in Sequelize
+
+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
